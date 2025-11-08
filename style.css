@@ -67,3 +67,19 @@ button:hover {
     font-size: 1.2em;
     font-weight: bold;
 }
+
+#simulation-container {
+    margin-bottom: 20px;
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#simulation-result {
+    margin-top: 15px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+}

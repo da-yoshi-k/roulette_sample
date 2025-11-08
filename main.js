@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultText = document.getElementById("result-text");
   const canvas = document.getElementById("roulette-canvas");
   const ctx = canvas.getContext("2d");
+  const runSimulationButton = document.getElementById("run-simulation");
+  const simulationResultDiv = document.getElementById("simulation-result");
 
   const MAX_OPTIONS = 10;
   let options = []; // idプロパティは使わない
@@ -231,6 +233,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }, duration);
   }
 
+  /**
+   * 1000回の試行シミュレーションを実行します。
+   */
+  function runSimulation() {
+    const TRIAL_COUNT = 1000;
+    const items = options.map((opt) => ({
+      name: opt.name,
+      weight: parseInt(opt.weight, 10) || 1,
+    }));
+
+    if (items.length < 2) {
+      alert("選択肢を2つ以上入力してください。");
+      return;
+    }
+
+    const results = {};
+    items.forEach((item) => {
+      results[item.name] = 0;
+    });
+
+    for (let i = 0; i < TRIAL_COUNT; i++) {
+      const winner = weightedRandom(items);
+      if (winner) {
+        results[winner.name]++;
+      }
+    }
+
+    simulationResultDiv.innerHTML = "<h3>1000回試行結果:</h3>"; // 結果をクリア
+    const totalWeight = items.reduce((sum, item) => sum + item.weight, 0);
+
+    for (const name in results) {
+      const count = results[name];
+      const percentage = (count / TRIAL_COUNT) * 100;
+      const item = items.find((it) => it.name === name);
+      const weightPercentage =
+        totalWeight > 0
+          ? (item.weight / totalWeight) * 100
+          : 100 / items.length;
+
+      const resultP = document.createElement("p");
+      resultP.textContent = `${name}: ${count}回 (${percentage.toFixed(
+        1
+      )}%) (理論値: ${weightPercentage.toFixed(1)}%)`;
+      simulationResultDiv.appendChild(resultP);
+    }
+  }
+
   // --- イベントリスナー ---
 
   addOptionButton.addEventListener("click", addOption);
@@ -255,6 +304,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   spinButton.addEventListener("click", spin);
+
+  runSimulationButton.addEventListener("click", runSimulation);
 
   // --- 初期化 ---
   function initialize() {

@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>重み付けルーレット</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <h1>重み付けルーレット</h1>
 
     <div id="options-container">
-        <h2>選択肢と重み</h2>
-        <div id="options-list">
-            <!-- 選択肢入力欄がここに追加されます -->
-        </div>
-        <button id="add-option">選択肢を追加</button>
+      <h2>選択肢と重み</h2>
+      <div id="options-list">
+        <!-- 選択肢入力欄がここに追加されます -->
+      </div>
+      <button id="add-option">選択肢を追加</button>
     </div>
 
     <div id="roulette-container">
-        <h2>ルーレット</h2>
-        <div id="roulette-wrapper">
-            <div id="roulette-arrow"></div>
-            <canvas id="roulette-canvas" width="400" height="400"></canvas>
-        </div>
-        <button id="spin-button">回す</button>
+      <h2>ルーレット</h2>
+      <div id="roulette-wrapper">
+        <div id="roulette-arrow"></div>
+        <canvas id="roulette-canvas" width="400" height="400"></canvas>
+      </div>
+      <button id="spin-button">回す</button>
     </div>
 
     <div id="result-container">
-        <h2>結果</h2>
-        <p id="result-text"></p>
+      <h2>結果</h2>
+      <p id="result-text"></p>
+    </div>
+
+    <div id="simulation-container">
+      <h2>妥当性チェック</h2>
+      <button id="run-simulation">試行</button>
+      <div id="simulation-result"></div>
     </div>
 
     <script src="main.js"></script>
-</body>
+  </body>
 </html>
