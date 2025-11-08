@@ -16,19 +16,35 @@ body {
 
 #options-list .option-item {
     display: flex;
+    flex-wrap: wrap; /* 折り返しを許可 */
     margin-bottom: 10px;
+    gap: 5px; /* 要素間の隙間 */
 }
 
 #options-list .option-item input {
-    margin-right: 10px;
     flex: 1;
+    min-width: 100px; /* 最小幅を設定 */
+}
+
+#options-list .option-item .remove-option {
+    /* ボタンのスタイル調整 */
+    padding: 5px 10px;
+    font-size: 0.9em;
 }
 
 #roulette-wrapper {
     position: relative;
-    width: 400px;
-    height: 400px;
+    width: 100%; /* 幅を100%に */
+    max-width: 400px; /* 最大幅は400px */
     margin: 0 auto;
+}
+
+/* アスペクト比を1:1に保つためのコンテナ */
+.aspect-ratio-box {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* 高さを幅と同じにする */
+    height: 0;
 }
 
 #roulette-arrow {
@@ -45,6 +61,11 @@ body {
 }
 
 #roulette-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: block;
     border: 1px solid black;
     border-radius: 50%; /* 円形にする */

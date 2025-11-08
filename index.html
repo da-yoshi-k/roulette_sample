@@ -46,8 +46,10 @@
     <div id="roulette-container">
       <h2>ルーレット</h2>
       <div id="roulette-wrapper">
-        <div id="roulette-arrow"></div>
-        <canvas id="roulette-canvas" width="400" height="400"></canvas>
+        <div class="aspect-ratio-box">
+          <div id="roulette-arrow"></div>
+          <canvas id="roulette-canvas"></canvas>
+        </div>
       </div>
       <button id="spin-button">回す</button>
     </div>
@@ -59,6 +61,9 @@
 
     <div id="simulation-container">
       <h2>妥当性チェック</h2>
+      <p>
+        ルーレットの動作が期待通りか確認するために、1000回試行して結果を集計します。
+      </p>
       <button id="run-simulation">試行</button>
       <div id="simulation-result"></div>
     </div>
