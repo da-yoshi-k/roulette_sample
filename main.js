@@ -127,6 +127,11 @@ document.addEventListener("DOMContentLoaded", () => {
    * ルーレットを描画します。
    */
   function drawRoulette() {
+    // canvasの実際のサイズに合わせて解像度を設定
+    const size = canvas.offsetWidth;
+    canvas.width = size;
+    canvas.height = size;
+
     const totalWeight = options.reduce(
       (sum, item) => sum + (item.weight || 1),
       0
@@ -158,7 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.save();
       ctx.fillStyle = "black";
 
-      const baseFontSize = 16;
+      // レスポンシブなフォントサイズ
+      const baseFontSize = radius * 0.08;
       const maxLength = 10;
       const scale = Math.min(1, maxLength / option.name.length);
       const fontSize = baseFontSize * scale;
@@ -167,7 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.translate(radius, radius);
       ctx.rotate(startAngle + angle / 2);
       ctx.textAlign = "right";
-      ctx.fillText(option.name, radius - 20, 10);
+      ctx.fillText(option.name, radius - radius * 0.1, fontSize / 2);
       ctx.restore();
 
       startAngle = endAngle;
@@ -316,6 +322,13 @@ document.addEventListener("DOMContentLoaded", () => {
     renderOptions();
     drawRoulette();
   }
+
+  // --- リサイズ対応 ---
+  const rouletteWrapper = document.getElementById("roulette-wrapper");
+  const resizeObserver = new ResizeObserver(() => {
+    drawRoulette();
+  });
+  resizeObserver.observe(rouletteWrapper);
 
   initialize();
 });
